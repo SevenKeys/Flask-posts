@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block container %}
+  {% if session.logged_in %}
+    <a class="btn btn-primary btn-fab btn-raised mdi-content-add" href="{{ url_for('main.add_post') }}" >Add a new post</a>
+  {% endif %}
+  <div class="top-pad">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>title</th>
+          <th>author</th>
+          <th>rating</th>
+          <th>description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for post in posts %}
+        <tr>
+          <td>{{post.title | upper}}</td>
+          <td>{{post.author.username}}</td>
+          <td>{{post.rating}}</td>
+          <td>{{post.description}}</td>
+          <td>
+          {% if session.username == post.author.username %}
+            <button type="button" class="close" aria-label="Close" data-id={{post.id}}><span aria-hidden="true">&times;</span></button>
+          {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <script type="text/javascript">
+    $(function(){
+      $('button.close').on('click', function(){
+        var $post_id = $(this).attr('data-id');
+        $.ajax({
+          type: 'GET',
+          url: $SCRIPT_ROOT + '/delete/' + $post_id,
+          success: function(){
+              window.location.href = '/posts';
+          }
+        })
+      })
+    });
+  </script>
+{% endblock %}

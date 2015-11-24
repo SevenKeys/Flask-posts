@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block container %}
+  <div class="top-pad">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for data in authors %}
+        <tr>
+          <td>{{ data.id }}</td>
+          <td>{{ data.username| upper }}</td>
+          <td>{{ data.email }}</td>
+          <td>
+          {% if data.username == session.username %}
+            <a href="{{ url_for('admin.delete', user_id=data.id) }}">Delete my account</a>
+          {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+{% endblock %}

@@ -1,0 +1,5 @@
+# Python compiled byte code
+*.pyc
+
+# SQLAlchemy database
+tmp/user_posts.db

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block container %}
+    <h2>Login</h2>
+    {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+    {% endif %}
+    <form action="{{ url_for('admin.login') }}" class="form-inline" method="post">
+        <dl>
+            <dt>Username:
+            <dd><input type="text" class="form-control" name="username" placeholder="Username" value="{{ request.form.username }}">
+            <dt>Password:
+            <dd><input type="password" class="form-control" name="password" placeholder="Password" value="{{ request.form.password }}">
+            <dd><br/><input type="submit" class="btn btn-default btn-md active" value="Login">
+        </dl>
+    </form>
+{% endblock %}
