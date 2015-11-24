@@ -12,5 +12,6 @@ This is a simple of blog with posts created with Flask microframework. Project i
 * `$ git clone http://github.com/SevenKeys/DRF-Angular.git`
 * `$ cd Flask-posts`
 * `$ pip install -r requirements.txt`
-* `$ python create_db.py `
+* `$ mkdir tmp`
+* `$ python create_db.py`
 * `$ python run.py`
